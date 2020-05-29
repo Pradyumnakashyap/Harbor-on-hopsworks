@@ -1,6 +1,6 @@
                             Deploying a Ceph cluster on Kubernetes with a Rook Operator
                             
-                            ![Rook Architecture](rook_architecture.png)
+   ![Rook Architecture](rook_architecture.png)
                             
                             
        
