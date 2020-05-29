@@ -1,5 +1,8 @@
                             Deploying a Ceph cluster on Kubernetes with a Rook Operator
                             
+                            ![Rook Architecture](rook_architecture.png)
+                            
+                            
        
        
        1) Update Kubernetes cluster to v1.13+
@@ -41,7 +44,7 @@
        9) Deploy the Harbor application to use the created PVC harbor-claim2 to use the storage on the cluster on a distributed storage.
        
        
-                                                    Rook Architecture 
                                                     
                                                     
-![Rook Architecture](rook_architecture.png)
+                                                    
+
