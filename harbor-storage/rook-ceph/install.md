@@ -44,5 +44,4 @@
                                                     Rook Architecture 
                                                     
                                                     
-        
- ![Alt text](/harbor-storage/rook-ceph/rook_architecture.jpg?raw=true "Rook Architecture")
+![Rook Architecture](rook_architecture.png)
