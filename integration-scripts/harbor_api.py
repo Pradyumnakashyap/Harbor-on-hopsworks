@@ -1,5 +1,5 @@
 #Operations to create new projects and add a image into it 
-#curl command - curl -u admin:Harbor12345 -i -k -X GET "https://10.0.2.15:30003/api/projects"
+
 
 try:
     import docker
@@ -16,6 +16,14 @@ except ImportError:
     import time
     import subprocess
 
+#Inputs to be obtained from Hopsworks
+harbor_host='10.0.2.15:30003'
+user='admin'
+password='Harbor12345'
+project_name = 'kube-project'
+docker_image = 'docker.io/registry:2'
+tag = r'{}/{}/{}:latest'.format(harbor_host, project_name, 'registry')
+
 def run_command(command):
     print "Command: ", subprocess.list2cmdline(command)
     try:
@@ -23,13 +31,13 @@ def run_command(command):
                                          stderr=subprocess.STDOUT,
                                          universal_newlines=True)
     except subprocess.CalledProcessError as e:
-        raise Exception('Error: Exited with error code: %s. Output:%s'% (e.returncode, e.output))
+        raise Exception('Error: Exited with error code: {}. Output:{}'.format(e.returncode, e.output))
     return output
 
 
 def get_projects():
 
-	resp = requests.get('https://10.0.2.15:30003/api/projects',verify='/etc/docker/certs.d/10.0.2.15:30003/ca.crt',auth=('admin','Harbor12345'))
+	resp = requests.get(r'https://{}/api/projects'.format(harbor_host),verify='/etc/docker/certs.d/{}/ca.crt'.format(harbor_host),auth=(user,password))
 	if resp.status_code != 200:
     # if something went wrong.
     		print('GET /api/projects {}'.format(resp.status_code))
@@ -60,34 +68,36 @@ def create_project(project_name,count_limit,storage_limit):
     "prevent_vul": "true"
   }
 }
-	resp = requests.post('https://10.0.2.15:30003/api/projects', json=create_project,verify='/etc/docker/certs.d/10.0.2.15:30003/ca.crt',auth=('admin','Harbor12345'),headers={'Content-Type':'application/json'})
+	resp = requests.post(r'https://{}/api/projects'.format(harbor_host), json=create_project,verify=r'/etc/docker/certs.d/{}/ca.crt'.format(harbor_host),auth=(user,password),headers={'Content-Type':'application/json'})
 	if resp.status_code != 201:
     		print('POST /api/projects {}'.format(resp.status_code))
 	print('Successfully created ')
 
 
 
-def docker_login(harbor_registry, user, password):
+def docker_login(harbor_host, user, password):
 	command = ["sudo", "docker", "login", harbor_host, "-u", user, "-p", password]
-    	print "Docker Login Command: ", command
-    	run_command(command)
+    	print ("Docker Login Command Running ")
+    	print(run_command(command))
 
-def docker_image_tag(image, harbor_registry, tag = None):
-	_tag = 'latest'
-	if tag is not None:
-	    _tag = tag
-	try:
-	    cli.tag(image, harbor_registry, _tag, force=True)
-	    return harbor_registry, _tag
-	except docker.errors.APIError, e:
-	    raise Exception(r" Docker tag image {} failed, error is [{}]".format (image, e.message))
 
-def add_dockerImage(): 
+def docker_image_tag(image, tag):
+	command = ["sudo", "docker", "tag", image , tag]
+	print(run_command(command))
+
+
+def add_dockerImage(image): 
 
 	client = docker.from_env()
 	cli = docker.APIClient(base_url='unix://var/run/docker.sock')
-	
+	for line in cli.push(image, stream=True, decode=True):
+		print(line)
+	print("Image added successfully")
 	
 
+docker_login(harbor_host, user, password)
+get_projects()
+create_project(project_name,-1,-1)
+docker_image_tag(docker_image,tag)
+add_dockerImage(tag)
 
-create_project('test',2,10)
