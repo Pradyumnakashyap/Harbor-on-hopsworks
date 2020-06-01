@@ -1,6 +1,5 @@
 #Operations to create new projects and add a image into it 
 
-
 try:
     import docker
     import sys
@@ -71,7 +70,7 @@ def create_project(project_name,count_limit,storage_limit):
 	resp = requests.post(r'https://{}/api/projects'.format(harbor_host), json=create_project,verify=r'/etc/docker/certs.d/{}/ca.crt'.format(harbor_host),auth=(user,password),headers={'Content-Type':'application/json'})
 	if resp.status_code != 201:
     		print('POST /api/projects {}'.format(resp.status_code))
-	print('Successfully created ')
+	print(r'{} successfully created'.format(project_name))
 
 
 
@@ -84,12 +83,13 @@ def docker_login(harbor_host, user, password):
 def docker_image_tag(image, tag):
 	command = ["sudo", "docker", "tag", image , tag]
 	print(run_command(command))
-
+	print("Image successfully tagged")
 
 def add_dockerImage(image): 
 
 	client = docker.from_env()
 	cli = docker.APIClient(base_url='unix://var/run/docker.sock')
+	print("Pushing image...")
 	for line in cli.push(image, stream=True, decode=True):
 		print(line)
 	print("Image added successfully")
