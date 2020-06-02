@@ -17,14 +17,18 @@
       for the pods in them using a Rook operator.  
    
    
-   ![Rook Architecture](rook_architecture.png)
+   ![Rook Architeture](rook_architecture.png)
    
    
    
    ![Rook with Ceph Design](rook-ceph-architecture.png)
                             
                             
-      Rook is a smart operator that enables Ceph storage systems to run on Kubernetes using Kubernetes primitives. The Rook pods as shown in the architecture above provides application pods to claim a volume by accessing thier pods. The Rook pods consist primarily of an Agent, Monitor, Manager and Object storage Daemons with these pods taking care of the Ceph cluster states, metrics and storing the application data in the provided location using the daemons. Hence with Ceph running in the Kubernetes cluster, Kubernetes applications can mount block devices and filesystems managed by Rook. Necessary steps to build the stack is as follows:
+      Rook is a smart operator that enables Ceph storage systems to run on Kubernetes using Kubernetes primitives.
+      The Rook pods as shown in the architecture above provides application pods to claim a volume by accessing thier pods.
+      The Rook pods consist primarily of an Agent, Monitor, Manager and Object storage Daemons with these pods taking care
+      of the Ceph cluster states, metrics and storing the application data in the provided location using the daemons.
+      Hence with Ceph running in the Kubernetes cluster, Kubernetes applications can mount block devices and filesystems managed by Rook. Necessary steps to build the stack is as follows:
        
        1) Update Kubernetes cluster to v1.13+
        
