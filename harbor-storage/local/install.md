@@ -36,25 +36,25 @@ helps to persist the data upon Kubernetes pods lifecycle.
  
  
  1) Set up the Storage class on the kubernetes cluster.
-    '''
+    
     $kubectl apply -f storageClass.yml
-    '''
+    
  2) Create namespaces for hosting two harbor container registry instances 
-    '''
+    
     $kubectl create ns harbor-1 
     $kubectl create ns harbor-2
-    '''
+    
  3) Create the Persistent Volumes for these instances in different namespaces
-    '''
+    
     $kubectl apply -f harbor1-PersistentVolume.yml -n harbor-1
     $kubectl apply -f harbor2-PersistentVolume.yml -n harbor-2
-    '''
+    
     Make sure the persistent volumes points towards volumepaths on Node-1 and 
     Node-3 respectively
     
  4) Create the persistent volume claims for both instances of harbor in thier 
     respective namespaces
-    '''
+    
     $kubectl apply -f harbor1-PersistentVolumeClaim.yml -n harbor-1
     $kubectl apply -f harbor2-PersistentVolumeClaim.yml -n harbor-2
     
