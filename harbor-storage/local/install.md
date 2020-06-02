@@ -42,11 +42,13 @@ helps to persist the data upon Kubernetes pods lifecycle.
  2) Create namespaces for hosting two harbor container registry instances 
     
     $ kubectl create ns harbor-1 
+    
     $ kubectl create ns harbor-2
     
  3) Create the Persistent Volumes for these instances in different namespaces
     
     $ kubectl apply -f harbor1-PersistentVolume.yml -n harbor-1
+    
     $ kubectl apply -f harbor2-PersistentVolume.yml -n harbor-2
     
     Make sure the persistent volumes points towards volumepaths on Node-1 and 
@@ -56,6 +58,7 @@ helps to persist the data upon Kubernetes pods lifecycle.
     respective namespaces
     
     $ kubectl apply -f harbor1-PersistentVolumeClaim.yml -n harbor-1
+    
     $ kubectl apply -f harbor2-PersistentVolumeClaim.yml -n harbor-2
     
  5) Deploy the two instances of Harbor Container registry in respective namespaces
