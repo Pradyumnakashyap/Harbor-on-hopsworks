@@ -1,18 +1,27 @@
                                 Deploying a Ceph cluster on Kubernetes with a Rook Operator
+                                
+                                
                             
    ![Shared Filesystem Architecture with Kubernetes](local-storage.png)
    
    
-      Above represents a shared filesystem architecture which allows the pods in the kubernetes cluster to use a persistent volume claim to access a persistent volume that acts as a shared storage resource in the kubernetes cluster across the nodes. 
-      This shared storage in the form of persistent volumes is itself built on top of a distributed filesystem hosted on the kubernetes nodes by using the disk storage of each of the nodes storing the data over the network with replicas (HA feature provided by DFS).
-      For the harbor instance to be hosted on the kubernetes cluster, we create a Ceph distributed filesystem cluster on the kubernetes cluster and create persistent volumes for the pods in them using a Rook operator.  
+   
+      Above represents a shared filesystem architecture which allows the pods in the kubernetes cluster 
+      to use a persistent volume claim to access a persistent volume that acts as a shared storage 
+      resource in the kubernetes cluster across the nodes. 
+      This shared storage in the form of persistent volumes is itself built on top of a distributed filesystem 
+      hosted on the kubernetes nodes by using the disk storage of each of the nodes storing the data over 
+      the network with replicas (HA feature provided by DFS).
+      For the harbor instance to be hosted on the kubernetes cluster, 
+      we create a Ceph distributed filesystem cluster on the kubernetes cluster and create persistent volumes 
+      for the pods in them using a Rook operator.  
    
    
    ![Rook Architecture](rook_architecture.png)
    
    
    
-   ![Rook-Ceph Design](rook-ceph-architecture.png)
+   ![Rook with Ceph Design](rook-ceph-architecture.png)
                             
                             
       Rook is a smart operator that enables Ceph storage systems to run on Kubernetes using Kubernetes primitives. The Rook pods as shown in the architecture above provides application pods to claim a volume by accessing thier pods. The Rook pods consist primarily of an Agent, Monitor, Manager and Object storage Daemons with these pods taking care of the Ceph cluster states, metrics and storing the application data in the provided location using the daemons. Hence with Ceph running in the Kubernetes cluster, Kubernetes applications can mount block devices and filesystems managed by Rook. Necessary steps to build the stack is as follows:
