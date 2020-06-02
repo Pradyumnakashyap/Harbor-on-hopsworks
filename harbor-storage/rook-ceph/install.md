@@ -1,6 +1,6 @@
-                                Deploying a Ceph cluster on Kubernetes with a Rook Operator
+ ## Deploying a Ceph cluster on Kubernetes with a Rook Operator
                                 
-                                
+ ## Shared Filesystem Architecture on Kubernetes                           
                             
    ![Shared Filesystem Architecture with Kubernetes](local-storage.png)
    
@@ -19,7 +19,7 @@
    
    ![Rook Architeture](rook_architecture.png)
    
-   
+  ## Rook with Ceph Design 
    
    ![Rook with Ceph Design](rook-ceph-architecture.png)
                             
