@@ -1,4 +1,4 @@
-# Persistent Volumes and Persistent volume claims with Kubernetes Node's Disk storage
+# Persistent Volumes and Persistent Volume Claims with Kubernetes Node's local-disk Storage
 
 ### Host filesystem storage with local storage class, persistent volumes and persistent volume claims
 
