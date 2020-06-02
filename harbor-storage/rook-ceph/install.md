@@ -1,5 +1,8 @@
                                 Deploying a Ceph cluster on Kubernetes with a Rook Operator
                             
+   ![Shared Filesystem Architecture with Kubernetes](PV-shared.jpg)
+   
+   
    ![Rook Architecture](rook_architecture.png)
                             
                             
