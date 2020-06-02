@@ -15,13 +15,6 @@ except ImportError:
     import time
     import subprocess
 
-#Inputs to be obtained from Hopsworks
-harbor_host='10.0.2.15:30003'
-user='admin'
-password='Harbor12345'
-project_name = 'kube-project'
-docker_image = 'docker.io/registry:2'
-tag = r'{}/{}/{}:latest'.format(harbor_host, project_name, 'registry')
 
 def run_command(command):
     print "Command: ", subprocess.list2cmdline(command)
@@ -95,9 +88,19 @@ def add_dockerImage(image):
 	print("Image added successfully")
 	
 
-docker_login(harbor_host, user, password)
-get_projects()
-create_project(project_name,-1,-1)
-docker_image_tag(docker_image,tag)
-add_dockerImage(tag)
+if __name__ == '__main__':
+	
+	#Inputs to be obtained from Hopsworks
+	harbor_host='10.0.2.15:30003'
+	user='admin'
+	password='Harbor12345'
+	project_name = 'kube-project'
+	docker_image = 'docker.io/registry:2'
+	tag = r'{}/{}/{}:latest'.format(harbor_host, project_name, 'registry')
+
+	docker_login(harbor_host, user, password)
+	get_projects()
+	create_project(project_name,-1,-1)
+	docker_image_tag(docker_image,tag)
+	add_dockerImage(tag)
 
