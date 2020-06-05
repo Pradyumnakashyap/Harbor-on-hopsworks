@@ -2,6 +2,8 @@
 
 # Install helm and move to the correct path - ***Root user privileges are required***
 
+set -e
+
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
 chmod 700 get_helm.sh
 temp=$(./get_helm.sh)
@@ -12,7 +14,7 @@ mv helm /usr/bin
 if ! helm version &> /dev/null
 then
 	echo "Helm installation failed, Please try installing manually"
-        return
+        exit 1
 else
 
 	rm -rf ~/get_helm.sh
@@ -21,6 +23,6 @@ else
 
 	mkdir -p /mnt/disk/test
 
-	echo "Installation and configuration complete! "
+	echo "Installation and configuration complete!"
 fi
 
