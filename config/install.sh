@@ -2,13 +2,13 @@
 
 # Check Docker version
 
-set +e
+set -e
 set -o noglob
 
 if ! docker --version &> /dev/null
 then
 	echo "Docker environment not present!"
-        return
+        exit 1 
 fi
 
 
@@ -17,10 +17,11 @@ fi
 
 master_exists=$(kubectl cluster-info  | grep master | grep -o -P 'https://.{0,20}' | cut -c 9-)
 
-[ -z "$master_exists" ] && echo "Kubernetes cluster is not running" 
+[ -z "$master_exists" ] && echo "Kubernetes cluster is not running" && exit 1
 
 masterip=$(kubectl get nodes -o wide | awk 'NR==2{print $6}')
 masternode=$(kubectl get nodes -o wide | awk 'NR==2{print $1}')
+
 
 # Create multiple YAML objects from stdin
 cat <<EOF | kubectl apply -f -
@@ -71,6 +72,6 @@ EOF
 helm repo add harbor https://helm.goharbor.io
 helm repo add stable https://kubernetes-charts.storage.googleapis.com
 
-helm install harbor --debug harbor/harbor --set expose.type=nodePort --set expose.tls.commonName='$masterip' --set externalURL='https://$masterip:30003' --set persistence.persistentVolumeClaim.registry.existingClaim='harbor-claim' --set persistence.persistentVolumeClaim.chartmuseum.existingClaim='harbor-claim' --set persistence.persistentVolumeClaim.jobservice.existingClaim='harbor-claim' --set persistence.persistentVolumeClaim.database.existingClaim='harbor-claim' --set persistence.persistentVolumeClaim.redis.existingClaim='harbor-claim' --set version='v1.10.1'
+helm install harbor --debug harbor/harbor --set expose.type=nodePort --set expose.tls.commonName=$masterip --set externalURL=https://$masterip:30003 --set persistence.persistentVolumeClaim.registry.existingClaim='harbor-claim' --set persistence.persistentVolumeClaim.chartmuseum.existingClaim='harbor-claim' --set persistence.persistentVolumeClaim.jobservice.existingClaim='harbor-claim' --set persistence.persistentVolumeClaim.database.existingClaim='harbor-claim' --set persistence.persistentVolumeClaim.redis.existingClaim='harbor-claim' --set version='v1.10.1'
 
 
