@@ -76,6 +76,6 @@ EOF
 helm repo add harbor https://helm.goharbor.io
 helm repo add stable https://kubernetes-charts.storage.googleapis.com
 
-helm install harbor --debug harbor/harbor --set expose.type=nodePort --set expose.tls.commonName=$masterip --set externalURL=https://$masterip:30003 --set persistence.persistentVolumeClaim.registry.existingClaim='harbor-claim' --set persistence.persistentVolumeClaim.chartmuseum.existingClaim='harbor-claim' --set persistence.persistentVolumeClaim.jobservice.existingClaim='harbor-claim' --set persistence.persistentVolumeClaim.database.existingClaim='harbor-claim' --set persistence.persistentVolumeClaim.redis.existingClaim='harbor-claim' --set version='v1.10.1'
+helm install harbor --debug harbor/harbor --set expose.type=nodePort --set expose.tls.commonName=$masterip --set externalURL=https://$masterip:30003 --set persistence.persistentVolumeClaim.registry.existingClaim='harbor-claim' --set persistence.persistentVolumeClaim.chartmuseum.existingClaim='harbor-claim' --set persistence.persistentVolumeClaim.jobservice.existingClaim='harbor-claim' --set persistence.persistentVolumeClaim.database.existingClaim='harbor-claim' --set persistence.persistentVolumeClaim.redis.existingClaim='harbor-claim' --set trivy.enabled=false --set version='v1.10.1'
 
 
