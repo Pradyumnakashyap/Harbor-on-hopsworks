@@ -1,3 +1,7 @@
+# Script to check Docker environment, check if the Kubernetes cluster is running.
+# Create YAML objects for harbor storage and download harbor helm charts
+# Install Harbor instance
+
 #!/bin/bash
 
 # Check Docker version
