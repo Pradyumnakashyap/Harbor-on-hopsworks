@@ -1,0 +1,14 @@
+dn: dc=hopsworks0,dc=logicalclocks,dc=com
+dc: hopsworks0
+objectClass: top
+objectClass: domain
+
+dn: cn=ldapadm,dc=hopsworks0,dc=logicalclocks,dc=com
+objectClass: organizationalRole
+cn: ldapadm
+description: LDAP Admin
+
+dn: ou=Users,dc=hopsworks0,dc=logicalclocks,dc=com
+objectClass: organizationalUnit
+ou: Users
+

@@ -1,0 +1,16 @@
+dn: uid=testUser,ou=Users,dc=hopsworks0,dc=logicalclocks,dc=com
+objectClass: top
+objectClass: account
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: testUser	
+uid: testUser
+uidNumber: 16859
+gidNumber: 100
+homeDirectory: /home/testUser
+loginShell: /bin/bash
+gecos: testUser
+userPassword: abc
+shadowLastChange: 0
+shadowMax: 0
+shadowWarning: 0
