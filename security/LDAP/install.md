@@ -1,7 +1,5 @@
 # Set up an LDAP server and integrate the authentication of Harbor registry
 
-### LDAP Server Architecture
-
 ![LDAP Architecture](LDAP_arc.jpg)
 
 ### Steps: 
@@ -76,4 +74,7 @@ Steps to set up the LDAP server :
 
   $ ldapadd -x -W -D "cn=ldapadm,dc=<hostname>,dc=<hostname>,dc=com" -f base.ldif
 
-  Enter the root password when prompted
+13. Change the password of the user with admin access before logging in.
+    Provide the end point and cn, dn information in the Harbor configuration by choosing 
+    the authentication mode as LDAP. Further test by logging in with a user in LDAP with
+    credentials provided in the LDAP server.
