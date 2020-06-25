@@ -46,18 +46,21 @@
           
        4) Once the roles are set up, create the Rook operator responsible for the orchestrationof the Ceph Cluster.
        
-         $ kubectl apply -f operator-with-csi.yaml (switch file with operator.yaml in the original repo)
+         $ kubectl apply -f operator.yaml 
        
        5) This operator also triggers the creation of DaemonSet in charge of deploying a rook agent on each worker node in the kubernetes cluster.
        
-       6) Create a Ceph Cluster with mgr as a Manager daemon keeping track of metrics and state of Ceph cluster (HA requires 2 mgr)
+       6) For this, Format  a /dev/<location> to xfs format in the local system with the disk space for each of the nodes on which the 
+	  cluster needs to run or for each of the nodes, leave an unused a raw disk for rook to utilize to build osd's.
+	  Next, create a Ceph Cluster with mgr as a Manager daemon keeping track of metrics and state of Ceph cluster (HA requires 2 mgr) 
        - mon is Monitor maintains maps of cluster states required for the daemons to coordinate with each other. (HA requires atleast 3)
        - osd is the Object storage daemon responsible to store data and corresponding replication,recovery etc. (HA requires atleast 3 osd)
        - uses all nodes to persist data of the ceph cluster.
        
-         $ kubectl apply -f cluster.yaml
+         $ kubectl apply -f cluster.yaml 
          
-       7) Format  a /dev/<location> to xfs format in the local system for usage. Use and deploy the storage class which defines a Replica pool and storage class to create a persistent Volume backed by Ceph block storage.
+       7) Use and deploy the storage class which defines a Replica pool and storage class to create a persistent Volume backed by Ceph block 
+	  storage.
         
          $ kubectl apply -f storageclass.yaml
          

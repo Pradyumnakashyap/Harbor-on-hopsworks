@@ -20,7 +20,7 @@ else
 
 	# Create the folder for the local persistent volumes
 
-	mkdir -p /mnt/disk/test
+	mkdir -p /mnt/disk/vol1
 
 	echo "Installation and configuration complete!"
 fi
