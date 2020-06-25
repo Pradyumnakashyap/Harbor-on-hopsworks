@@ -45,8 +45,8 @@ Steps to set up the LDAP server :
 6. Create self signed certificate and key to communicate with LDAP server.
   
   $ openssl req -new -x509 -nodes -out \
-    /etc/openldap/certs/myldap.<hostname>.cert \
-    -keyout /etc/openldap/certs/myldap.<hostname>.key \
+    /etc/openldap/certs/myldap.$hostname.cert \
+    -keyout /etc/openldap/certs/myldap.$hostname.key \
     -days 365
 
 7. Change owner and group permissions so OpenLDAP can modify/read files
