@@ -2,14 +2,13 @@
 
 # Install helm and move to the correct path - ***Root user privileges are required***
 
-set -e
+set +e
 
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
 chmod 700 get_helm.sh
 temp=$(./get_helm.sh)
 
-cd /usr/local/bin
-mv helm /usr/bin
+mv /usr/local/bin/helm /usr/bin
 
 if ! helm version &> /dev/null
 then
@@ -17,7 +16,7 @@ then
         exit 1
 else
 
-	rm -rf ~/get_helm.sh
+	rm -rf get_helm.sh
 
 	# Create the folder for the local persistent volumes
 
@@ -25,4 +24,6 @@ else
 
 	echo "Installation and configuration complete!"
 fi
+
+
 
