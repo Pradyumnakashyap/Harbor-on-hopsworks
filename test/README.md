@@ -8,16 +8,17 @@ The performance metrics python script does the following :
 Prerequisite : Deploy harbor registry from scratch. We should be sure that there is no data in the form of repositories or images in it.
 
 1) Push Concurrency 
--> First the script builds 1000 images based on the Dockerfile in the mentioned path.
--> It then runs a client in the cycle with ITERATIONS_COUNT iterations and CONCURRENCY concurrency value. 
-The client should be able to push the images which we created on the previous step and write a response time to a log/report. 
-Manually, we need to perform one cycle per each CONCURRENCY value from the following list:
 
-CONCURRENCY=1
-CONCURRENCY=10
-CONCURRENCY=30
-CONCURRENCY=50
-CONCURRENCY=100
+- First the script builds 1000 images based on the Dockerfile in the mentioned path.
+- It then runs a client in the cycle with ITERATIONS_COUNT iterations and CONCURRENCY concurrency value. 
+    The client should be able to push the images which we created on the previous step and write a response time to a log/report. 
+    Manually, we need to perform one cycle per each CONCURRENCY value from the following list:
+
+- CONCURRENCY=1
+- CONCURRENCY=10
+- CONCURRENCY=30
+- CONCURRENCY=50
+- CONCURRENCY=100
 
 -> As a result of the previous step we are able to provide graphs and tables with the dependences on an iteration number of a response time. 
 One graph and one table per each CONCURRENCY.
