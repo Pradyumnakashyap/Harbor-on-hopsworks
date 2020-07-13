@@ -9,24 +9,22 @@ Prerequisite : Deploy harbor registry from scratch. We should be sure that there
 
 1) Push Concurrency 
 
-a. First the script builds 1000 images based on the Dockerfile in the mentioned path.
+a. First the script builds 100 images based on the Dockerfile in the mentioned path.
 b. It then runs a client in the cycle with ITERATIONS_COUNT iterations and CONCURRENCY concurrency value. 
    The client should be able to push the images which we created on the previous step and write a response time to a log/report. 
    Manually, we need to perform one cycle per each CONCURRENCY value from the following list:
 
 - CONCURRENCY=1
-- CONCURRENCY=10
-- CONCURRENCY=30
-- CONCURRENCY=50
-- CONCURRENCY=100
+- CONCURRENCY=3
+- CONCURRENCY=6
 
 c. As a result of the previous step we are able to provide graphs and tables with the dependences on an iteration number of a response time. 
 One graph and one table per each CONCURRENCY.
 
 2) Pull Concurrency
 
-a. First the script builds 1000 images based on the Dockerfile in the mentioned path.
-b. Next, it uploads 1000 images to the repository
+a. First the script builds 100 images based on the Dockerfile in the mentioned path.
+b. Next, it uploads 100 images to the repository
 c. Further deletes created images from a local docker on a machine with test tool where docker images was created. 
 After this step created images should be placed in the repository and they should be removed from the local docker.
 d. It then runs a client in the cycle with ITERATIONS_COUNT iterations and CONCURRENCY concurrency value. 
@@ -34,10 +32,8 @@ d. It then runs a client in the cycle with ITERATIONS_COUNT iterations and CONCU
   Manually, we need to perform one cycle per each CONCURRENCY value from the following list:
 
 - CONCURRENCY=1
-- CONCURRENCY=10
-- CONCURRENCY=30
-- CONCURRENCY=50
-- CONCURRENCY=100
+- CONCURRENCY=3
+- CONCURRENCY=6
 
 e. As a result of the previous step we are able to provide graphs and tables with the dependences on an iteration number of a response time. 
 One graph and one table per each CONCURRENCY.
@@ -59,5 +55,5 @@ Following custom values can be changed in the script :
  
 4. push_results.csv and pull_results.csv saved in a persistent folder for analysis.
 5. The steps from 1 through to 4 are repeated with change in concurrency parameter values 
-   values: 1,10,30,50,100
+   values: 1,3,6
    
