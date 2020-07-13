@@ -30,7 +30,7 @@ for results_file in results_files:
 work_queue = Queue()
 
 
-def build_(iteration):
+def build_image(iteration):
     start_time = time()
     build_command = Popen(['docker', 'build', '--no-cache=true', '-t', repo_url + '/' + image_name + '-' + str(iteration) + ':' + image_tag, '--file=' + work_dir + '/Dockerfile', work_dir])
     build_command.wait()
