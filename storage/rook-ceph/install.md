@@ -39,7 +39,7 @@
        
           $ git clone https://github.com/rook/rook.git
           $ cd rook
-          $ git checkout release-1.0 (All yaml files are configured based on this version)
+          $ git checkout release-1.3 (All yaml files are configured based on this version)
           
        3) Create CRD's for communication with the API Server. Inside cluster/examples/kubernetes/ceph switch the common.yaml file with the one in this repo.
           $ kubectl apply -f common.yaml (creates service account,role,role binding and cluster role)
@@ -66,7 +66,6 @@
          
        8) Persistent Volume and Persistent Volume Claim are created inside the required Namespace with the files persistentVolumeRook.yml and persistentVolumeClaimRook.yml
        
-        $ kubectl apply -f persistentVolumeRook.yml 
         $ kubectl apply -f persistentVolumeClaimRook.yml
         
        9) Deploy the Harbor application to use the created PVC harbor-claim2 to use the storage on the cluster on a distributed storage.
