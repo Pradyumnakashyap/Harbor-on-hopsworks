@@ -23,7 +23,7 @@ master_exists=$(kubectl cluster-info  | grep master | grep -o -P 'https://.{0,20
 
 [ -z "$master_exists" ] && echo "Kubernetes cluster is not running" && exit 1
 
-masterip=$(kubectl get nodes -o wide | awk 'NR==2{print $6}')
+masterip=$(kubectl get nodes -o wide | awk 'NR==2{print $6}')                           #Use $7 column position for external IP 
 masternode=$(kubectl get nodes -o wide | awk 'NR==2{print $1}')
 
 
