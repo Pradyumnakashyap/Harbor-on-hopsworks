@@ -16,7 +16,7 @@
     ii. If authentication succeeds, login successful
 
 
-Steps to set up the LDAP server : 
+### Steps to set up the LDAP server : 
 
 1. Update the system and install the required packages for centOS 
 
@@ -25,6 +25,7 @@ Steps to set up the LDAP server :
 2. Start the LDAP Daemon and enable it on boot
 
   $ systemctl start slapd.service
+  
   $ systemctl enable slapd.service
   
 3. Run slappasswd to set up LDAP root password and save the output to 
@@ -70,11 +71,15 @@ Steps to set up the LDAP server :
 
   $ ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
   
+  $ ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif
+  
 12. Create the base.ldif file for your domain with relevant groups and users.
 
-  $ ldapadd -x -W -D "cn=ldapadm,dc=<hostname>,dc=<hostname>,dc=com" -f base.ldif
+  $ ldapadd -x -W -D "cn=ldapadm,dc=$hostname,dc=$hostname,dc=com" -f base.ldif
+  
 
 13. Change the password of the user with admin access before logging in.
     Provide the end point and cn, dn information in the Harbor configuration by choosing 
     the authentication mode as LDAP. Further test by logging in with a user in LDAP with
     credentials provided in the LDAP server.
+
