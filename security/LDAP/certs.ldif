@@ -1,10 +1,13 @@
-dn: cn=config
-changetype: modify
-replace: olcTLSCertificateKeyFile
-olcTLSCertificateKeyFile: /etc/openldap/certs/myldap.hopsworks0.logicalclocks.com.key
+#Sometimes LDAP server does not allow using the key file first, hence switched the certificate configuration to be done first
 
 dn: cn=config
 changetype: modify
 replace: olcTLSCertificateFile
 olcTLSCertificateFile: /etc/openldap/certs/myldap.hopsworks0.logicalclocks.com.cert
+
+dn: cn=config
+changetype: modify
+replace: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /etc/openldap/certs/myldap.hopsworks0.logicalclocks.com.key 
+
 
