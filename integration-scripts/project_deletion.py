@@ -29,8 +29,8 @@ def get_project_id(project_name):
 
 def delete_repo(project_name):
 
-        repo_name = r'{}/{}'.format(project_name,'conda_image')
-        resp = requests.delete(r'https://{}/api/v2.0/repositories/{}/tags/{}'.format(harbor_host,repo_name,'latest'),verify=r'/etc/docker/certs.d/{}/ca.crt'.format(harbor_host),auth=(user,password),headers={'Content-Type':'application/json'})
+        repo_name = r'{}/{}'.format(project_name,'busybox')
+        resp = requests.delete(r'https://{}/api/v2.0/projects/{}/repositories/{}:{}'.format(harbor_host,project_name,repo_name,'latest'),verify=r'/etc/docker/certs.d/{}/ca.crt'.format(harbor_host),auth=(user,password),headers={'Content-Type':'application/json'})
         if resp.status_code != 200:
                 print('Error deleting the repository with status code /api/projects {}'.format(resp.status_code))
                 return 0
@@ -57,6 +57,6 @@ if __name__ == '__main__':
         harbor_host='10.0.2.15:30003'
         user='admin'
         password='Harbor12345'
-        project_name = 'kube-test'
+        project_name='kube-test'
         delete_project(project_name)
 

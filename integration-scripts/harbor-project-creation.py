@@ -52,8 +52,8 @@ def create_project(project_name):
         "cve_id": ""
       }
     ],
-    "project_id": 0,
-    "id": 0,
+    "project_id": 123,
+    "id": 123,
     "expires_at": 0
   },
   "storage_limit": -1,
@@ -104,8 +104,8 @@ if __name__ == '__main__':
 	docker_image = 'docker.io/busybox'
 	tag = r'{}/{}/{}:latest'.format(harbor_host, project_name, 'conda_image')
 	docker_login(harbor_host, user, password)
-	get_projects()
+	#get_projects()
 	create_project(project_name)
-	docker_image_tag(docker_image,tag)
-	add_dockerImage(tag)
+	#docker_image_tag(docker_image,tag)
+	#add_dockerImage(tag)
 	
