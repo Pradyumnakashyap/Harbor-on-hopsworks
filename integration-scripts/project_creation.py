@@ -12,7 +12,7 @@ except ImportError:
     import sys
 
 
-def create_project(project_name,project_id):
+def create_project(project_name):
         create_project = {
   "count_limit": -1,
   "project_name": project_name,
@@ -22,8 +22,8 @@ def create_project(project_name,project_id):
         "cve_id": ""
       }
     ],
-    "project_id": project_id,
-    "id": project_id,
+    "project_id": 0,
+    "id": 0,
     "expires_at": 0
   },
   "storage_limit": -1,
@@ -50,7 +50,6 @@ if __name__ == '__main__':
         user= str(sys.argv[2])
         password= str(sys.argv[3])
         project_name = str(sys.argv[4])
-	project_id = int(sys.argv[5])
-        create_project(project_name, project_id)
+        create_project(project_name)
        	 
 
