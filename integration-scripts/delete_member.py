@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
- #Operations delete member from projects 
+
 
 try:
     import sys
@@ -32,7 +32,10 @@ def get_project_id(project_name):
         	
 	except IOError:
 		print('Please verify the name of the Harbor registry passed as argument or check if the certificate required to access the Harbor Registry is located in path: "/etc/docker/certs.d/<registryip>/"!')
-		sys.exit(1)	
+		sys.exit(1)
+	except:
+		print('Please verify the registry credentials!')
+		sys.exit(1)
 
 def get_member_id(project_id,user_name):
 	try:
