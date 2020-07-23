@@ -21,11 +21,11 @@ def create_project(project_name):
         	resp = requests.post(r'https://{}/api/v2.0/projects'.format(harbor_host), json=create_project,verify=r'/etc/docker/certs.d/{}/ca.crt'.format(harbor_host),auth=(user,password),headers={'Content-Type':'application/json'})
         	if resp.status_code != 201:
                 	print('Error creating project ! POST error with status code /api/projects {}'.format(resp.status_code))
-                	return
+                	sys.exit(1)
         #print(r'{} project successfully created'.format(project_name))
 	except IOError:
 		print('Please verify the name of the Harbor registry passed as argument or check if the certificate required to access the Harbor Registry is located in path: "/etc/docker/certs.d/<registryip>/"! ')
-		
+		sys.exit(1)
 if __name__ == '__main__':
 
         #Inputs to be obtained from Hopsworks
