@@ -21,7 +21,7 @@ def create_user(user_name,user_password,email):
 
 		resp = requests.post(r'https://{}/api/v2.0/users'.format(harbor_host), json=user_details,verify=r'/etc/docker/certs.d/{}/ca.crt'.format(harbor_host),auth=(user,password),headers={'Content-Type':'application/json'})
         	if resp.status_code != 201:
-                	print('Error creating a user in Harbor ! POST error with status code /api/projects {}'.format(resp.status_code))
+                	print('Error creating a user in Harbor ! POST error with status code {}'.format(resp.status_code))
                 	sys.exit(1)
         #print(r'{} created user successfully'.format(user_name))
 	except IOError:

@@ -54,6 +54,7 @@ def add_dockerImage(image,project_name):
 		#print("Image added successfully")
 	except:
 		print('Docker image not added to the repository, Please verify if the project exists in Harbor and re-try!')
+		sys.exit(1)
 
 if __name__ == '__main__':
 
