@@ -26,7 +26,10 @@ def create_user(user_name,user_password,email):
         #print(r'{} created user successfully'.format(user_name))
 	except IOError:
 		print('Please verify the name of the Harbor registry passed as argument or check if the certificate required to access the Harbor Registry is located in path: "/etc/docker/certs.d/<registryip>/"!')
-		sys.exit(1)	
+		sys.exit(1)
+	except:
+		print('Please verify the registry credentials!')
+		sys.exit(1)
 if __name__ == '__main__':
 
         #Inputs to be obtained from Hopsworks
