@@ -24,13 +24,13 @@ def create_project(project_name):
                 	return
         #print(r'{} project successfully created'.format(project_name))
 	except IOError:
-		print('Please verify the name of the Harbor registry or check if the certificate required to access the Harbor Registry is located in path: "/etc/docker/certs.d/<registryip>/"')
+		print('Please verify the name of the Harbor registry passed as argument or check if the certificate required to access the Harbor Registry is located in path: "/etc/docker/certs.d/<registryip>/"! ')
 		
 if __name__ == '__main__':
 
         #Inputs to be obtained from Hopsworks
         if len(sys.argv)<5:
-                print("Fatal: Please include the required arguments in the command line.")
+                print("Fatal: Please include the required arguments for the script!")
                 sys.exit(1)
 	harbor_host= str(sys.argv[1])
         user= str(sys.argv[2])
