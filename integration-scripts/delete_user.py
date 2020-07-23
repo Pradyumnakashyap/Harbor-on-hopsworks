@@ -25,6 +25,10 @@ def get_user_id(user_name):
 	except IOError:
 		print('Please verify the name of the Harbor registry passed as argument or check if the certificate required to access the Harbor Registry is located in path: "/etc/docker/certs.d/<registryip>/"!')
 		sys.exit(1)
+	except:
+		print('Please verify the registry credentials!')
+		sys.exit(1)
+		
 def delete_user(user_name):
 
         try:
