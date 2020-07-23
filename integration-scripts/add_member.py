@@ -30,6 +30,9 @@ def get_project_id(project_name):
 	except IOError:
 		print('Please verify the name of the Harbor registry passed as argument or check if the certificate required to access the Harbor Registry is located in path: "/etc/docker/certs.d/<registryip>/"!')
 		sys.exit(1)	
+	except:
+		print('Please verify the registry credentials!')
+		sys.exit(1)
 
 def add_member(project_name,user_name):
 	try:
