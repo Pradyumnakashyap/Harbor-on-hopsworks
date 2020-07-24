@@ -1,0 +1,16 @@
+dn: uid=hopsworks,ou=Users,dc=hopsworks0,dc=logicalclocks,dc=com
+objectClass: top
+objectClass: account
+objectClass: posixAccount
+objectclass: extensibleObject
+cn: hopsworks
+uid: hopsworks
+uidNumber: 16859
+gidNumber: 100
+homeDirectory: /home/hopsworks
+loginShell: /bin/bash
+userPassword: hopsworks
+mail: hopsworks@hopsworks.ai
+shadowLastChange: 0
+shadowMax: 0
+shadowWarning: 0
