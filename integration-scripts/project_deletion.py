@@ -23,7 +23,9 @@ def get_project_id(project_name):
 				sys.exit(1)
         		resp_dump = json.dumps(resp.text)
         		resp_str = json.loads(resp_dump)
-			return [resp_str[24:35].split(',', 1)[0], resp_str[299:310].split(',', 1)[0]]
+			project_id =  int(resp_str[24:35].split(',', 1)[0][0])
+			repo_count =  int(resp_str[298:308].split(',', 1)[0])
+			return project_id, repo_count
 		else:
 			print(r'Project with name {} does not exists!'.format(project_name))
 			sys.exit(1)
@@ -31,8 +33,8 @@ def get_project_id(project_name):
 	except IOError:
 		print('Please verify the name of the Harbor registry passed as argument or check if the certificate required to access the Harbor Registry is located in path: "/etc/docker/certs.d/<registryip>/"!')
 		sys.exit(1)
-	except:
-		print('Please verify the registry credentials!')
+	#except:
+	#	print('Please verify the registry credentials!')
 def delete_repo(project_name):
 
         repo_name="conda-image"
@@ -46,11 +48,11 @@ def delete_project(project_name):
 
         try:
 		repo_flag = 1
-        	project_detail = get_project_id(project_name)
-        	if int(project_detail[1]) > 0:
+        	project_id, repo_count = get_project_id(project_name)
+	      	if repo_count > 0:
                 	repo_flag = delete_repo(project_name)
         	if repo_flag :
-                	resp = requests.delete(r'https://{}/api/v2.0/projects/{}'.format(harbor_host,int(project_detail[0])),verify=r'/etc/docker/certs.d/{}/ca.crt'.format(harbor_host),auth=(user,password),headers={'Content-Type':'application/json'})
+                	resp = requests.delete(r'https://{}/api/v2.0/projects/{}'.format(harbor_host,project_id),verify=r'/etc/docker/certs.d/{}/ca.crt'.format(harbor_host),auth=(user,password),headers={'Content-Type':'application/json'})
                 	if resp.status_code != 200:
                         	print('Error deleting project with status code {}'.format(resp.status_code))
                         	sys.exit(1)
@@ -73,5 +75,5 @@ if __name__ == '__main__':
         password= str(sys.argv[3])
         project_name=str(sys.argv[4])
         delete_project(project_name)
-      
+        #get_project_id(project_name)
 
