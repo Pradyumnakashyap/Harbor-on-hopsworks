@@ -75,5 +75,4 @@ if __name__ == '__main__':
         password= str(sys.argv[3])
         project_name=str(sys.argv[4])
         delete_project(project_name)
-        #get_project_id(project_name)
 
