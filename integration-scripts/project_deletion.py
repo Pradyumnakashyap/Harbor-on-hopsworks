@@ -37,7 +37,7 @@ def get_project_id(project_name):
 	#	print('Please verify the registry credentials!')
 def delete_repo(project_name):
 
-        repo_name="conda-image"
+        repo_name="conda_image"
         resp = requests.delete(r'https://{}/api/v2.0/projects/{}/repositories/{}'.format(harbor_host,project_name,repo_name),verify=r'/etc/docker/certs.d/{}/ca.crt'.format(harbor_host),auth=(user,password),headers={'Content-Type':'application/json'})
         if resp.status_code != 200:
                 print('Error deleting the repository with status code /api/projects {}'.format(resp.status_code))
