@@ -16,7 +16,7 @@ helps to persist the data upon Kubernetes pods lifecycle.
 ### Harbor Architecture with local Storage on Kubernetes Nodes
 
 
-![Harbor Architecture - Kubernetes Node Storage](Architecture-local.jpg)
+![Harbor Architecture - Kubernetes Node Storage](local_storage.jpg)
 
 
 
